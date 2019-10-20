@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="hrep"
+          class="sda.springcore.spring_xml_minimal.repository.HibernateCustomerRepositoryImpl" />
+    <bean name="memrep"
+          class="sda.springcore.spring_xml_minimal.repository.InMemoryRepositoryImpl" />
+
+    <!--Setter injection -->
+    <!--We describe this as: "wiring beans by name using setter injection" -->
+
+    <!--<bean name="customerService" class="CustomerServiceImpl">-->
+        <!--<property name="customerRepository" ref="hrep"/>-->
+    <!--</bean>-->
+
+<!--// Constructor injection-->
+    <bean name="customerService"
+          class="sda.springcore.spring_xml_minimal.service.CustomerServiceImpl">
+        <constructor-arg index="0" ref="memrep"/>
+        <constructor-arg index="1" value="from Configured"/>
+    </bean>
+
+</beans>
